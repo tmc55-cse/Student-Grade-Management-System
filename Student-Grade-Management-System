@@ -1,0 +1,122 @@
+import java.util.*;
+
+public class StudentGradeManagement {
+
+    public static void main(String[] args) {
+
+        // LIST - Stores student 
+        List<String> students = new ArrayList<>();
+
+        students.add("Arun");
+        students.add("Bala");
+        students.add("Kavin");
+        students.add("Divya");
+        students.add("Priya");
+
+        // SET - Stores unique subjects
+        Set<String> subjects = new HashSet<>();
+
+        subjects.add("Java");
+        subjects.add("Database");
+        subjects.add("Python");
+        subjects.add("Java"); // Duplicate will not be added
+
+        // MAP - Stores student name and marks
+        Map<String, Integer> marks = new HashMap<>();
+
+        marks.put("Arun", 85);
+        marks.put("Bala", 72);
+        marks.put("Kavin", 90);
+        marks.put("Divya", 78);
+        marks.put("Priya", 95);
+
+        // QUEUE - Stores students waiting for grade processing
+        Queue<String> gradeQueue = new LinkedList<>();
+
+        gradeQueue.add("Arun");
+        gradeQueue.add("Bala");
+        gradeQueue.add("Kavin");
+        gradeQueue.add("Divya");
+        gradeQueue.add("Priya");
+
+        // Display students
+        System.out.println("======================================");
+        System.out.println("     STUDENT GRADE MANAGEMENT");
+        System.out.println("======================================");
+
+        System.out.println("\nStudents List:");
+        for (String student : students) {
+            System.out.println(student);
+        }
+
+        // Display subjects
+        System.out.println("\nSubjects:");
+        for (String subject : subjects) {
+            System.out.println(subject);
+        }
+
+        // Display marks
+        System.out.println("\nStudent Marks:");
+        for (Map.Entry<String, Integer> entry : marks.entrySet()) {
+            System.out.println(
+                entry.getKey() + " : " + entry.getValue()
+            );
+        }
+
+        // Display grade queue
+        System.out.println("\nGrade Processing Queue:");
+        System.out.println(gradeQueue);
+
+        // Process queue
+        System.out.println("\nProcessing Grades:");
+
+        while (!gradeQueue.isEmpty()) {
+
+            String student = gradeQueue.poll();
+
+            int mark = marks.get(student);
+
+            String grade;
+
+            if (mark >= 90) {
+                grade = "A+";
+            } else if (mark >= 80) {
+                grade = "A";
+            } else if (mark >= 70) {
+                grade = "B";
+            } else if (mark >= 60) {
+                grade = "C";
+            } else if (mark >= 50) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+
+            System.out.println(
+                student + " -> Mark: " + mark +
+                " -> Grade: " + grade
+            );
+        }
+
+        // Find highest mark
+        String topStudent = "";
+        int highestMark = 0;
+
+        for (Map.Entry<String, Integer> entry : marks.entrySet()) {
+
+            if (entry.getValue() > highestMark) {
+                highestMark = entry.getValue();
+                topStudent = entry.getKey();
+            }
+        }
+
+        System.out.println("\n--------------------------------------");
+        System.out.println(
+            "Top Student: " + topStudent
+        );
+        System.out.println(
+            "Highest Mark: " + highestMark
+        );
+        System.out.println("--------------------------------------");
+    }
+}
